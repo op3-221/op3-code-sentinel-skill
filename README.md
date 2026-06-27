@@ -90,7 +90,17 @@ This package is intentionally not locked to one agent platform.
 - Codex: copy the skill into `~/.codex/skills/`.
 - Other AI-agent runtimes: adapt `skills/op3-code-sentinel/SKILL.md` and the reference files to the runtime's skill/profile format.
 
-The example soul in `examples/bugsy-soul/SOUL.md` is Hermes-oriented, but the core review methodology is platform-neutral.
+The `agents/openai.yaml` file is for Codex/OpenAI integration only. Hermes
+does not use it — it can be safely ignored when installing in Hermes.
+
+The example soul in `examples/bugsy-soul/SOUL.md` is an illustrative system
+prompt for a dedicated debug agent ("Bugsy"). It is not a Hermes config file
+and is not loaded automatically. Use it as inspiration for building a
+specialized agent profile if desired.
+
+Files in `docs/` (research notes, validation results, pressure scenarios)
+are development artifacts for skill maintainers. They are not loaded by the
+skill at runtime.
 
 ## Install In Hermes
 
