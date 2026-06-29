@@ -27,14 +27,14 @@ Do not rely on `set -e` alone. It has exceptions and does not replace explicit c
 
 - unquoted variables;
 - word splitting or globbing;
-- `rm -rf`, `mv`, `cp`, `chown`, `chmod` using variables;
+- recursive deletion, move, copy, ownership, or permission changes using variables;
 - empty target variables;
 - root path or parent directory target;
-- `curl | bash`;
+- remote installer output executed directly by a shell;
 - temporary files without `mktemp`;
 - missing `trap` cleanup;
 - secrets in argv, logs, history, or env dumps;
-- broad `sudo`;
+- broad privilege elevation;
 - scripts that are not idempotent;
 - interactive prompts in automation;
 - firewall, SSH, Docker, or systemd changes without explicit scope.

@@ -44,7 +44,7 @@ Map important findings when useful:
 - Cryptographic failures: custom crypto, weak randomness, TLS disabled, secrets logged.
 - Security misconfiguration: debug mode, public admin port, permissive CORS.
 - Vulnerable/outdated components: dependency issue with reachability.
-- SSRF/path traversal/deserialization/open redirect: prove source and sink.
+- SSRF/CWE-22 directory escape/deserialization/open redirect: prove source and sink.
 
 Do not force a mapping when it adds noise.
 

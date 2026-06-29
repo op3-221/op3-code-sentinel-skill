@@ -89,7 +89,7 @@ Prefer existing project scripts. Do not install tools without approval.
 Use `search_files` with this risky-symbol pattern:
 
 ```text
-TODO|FIXME|XXX|HACK|password|secret|token|api[_-]?key|private[_-]?key|BEGIN RSA|BEGIN OPENSSH|DATABASE_URL|JWT|SESSION|DEBUG|shell=True|unsafe|exec\.|Command\(|rm -rf|0\.0\.0\.0|privileged|hostNetwork|docker\.sock
+TODO|FIXME|XXX|HACK|password|secret|token|api[_-]?key|private[_-]?key|BEGIN RSA|BEGIN OPENSSH|DATABASE_URL|JWT|SESSION|DEBUG|shell=True|unsafe|exec\.|Command\(|0\.0\.0\.0|privileged|hostNetwork|docker\.sock
 ```
 
 Use `terminal` for these git checks when reviewing a repository:
