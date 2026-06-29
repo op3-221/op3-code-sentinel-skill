@@ -24,10 +24,13 @@ Do not accept requested severity without evidence.
 ## Runtime Packages
 
 This repository ships four installable variants so each agent gets native
-instructions and install paths.
+instructions and install paths. For Hermes, the official package is the
+`skills/op3-code-sentinel/` directory. It is intentionally not named
+`hermes/`, because Hermes Skills Hub taps discover installable skills from
+`skills/<skill-name>/SKILL.md`.
 
 ```text
-skills/op3-code-sentinel/              Hermes Skills Hub package
+skills/op3-code-sentinel/              Hermes Skills Hub package (official)
 codex/op3-code-sentinel/               Codex package
 .opencode/skills/op3-code-sentinel/    OpenCode package
 portable/op3-code-sentinel/            Runtime-neutral package
@@ -37,6 +40,12 @@ The methodology references are copied into each package so every variant can
 be installed on its own.
 
 ## Install In Hermes
+
+Hermes package:
+
+```text
+skills/op3-code-sentinel/
+```
 
 Hermes must be installed through the Skills Hub command so the skill appears in
 Hermes skill lists, can be audited, and can be updated later. Do not install the
@@ -136,6 +145,9 @@ the target runtime.
 skills/op3-code-sentinel/
   SKILL.md
   references/
+
+HERMES.md
+skills/README.md
 
 codex/op3-code-sentinel/
   SKILL.md
