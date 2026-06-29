@@ -1,4 +1,0 @@
-interface:
-  display_name: "OP3 Code Sentinel"
-  short_description: "Debug bugs and audit code security with proof."
-  default_prompt: "Use OP3 Code Sentinel to debug or review this code for real bugs and security risks. Prove root cause or exploitability before recommending fixes."

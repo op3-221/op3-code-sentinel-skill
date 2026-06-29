@@ -1,0 +1,4 @@
+interface:
+  display_name: "OP3 Code Sentinel"
+  short_description: "Debug and audit code with proof."
+  default_prompt: "Use $op3-code-sentinel to review this code for real bugs and security risks with evidence before fixes or severity calls."
