@@ -1,10 +1,7 @@
 # OP3 Code Sentinel Skill
 
-**OP3 Code Sentinel Skill** is a portable community skill for AI coding agents that need to debug real bugs and audit code security with evidence.
-
-It is designed for Python, Rust, Go, Shell, infrastructure scripts, authentication, authorization, secrets, injections, races, unsafe code, dependency vulnerabilities and production-impacting changes.
-
-It includes ready-to-use install notes for Hermes and Codex. Other agent runtimes can adapt the `SKILL.md` workflow and references.
+**OP3 Code Sentinel Skill** is a community skill for AI coding agents that
+debug real bugs and audit code security with evidence.
 
 Core rule:
 
@@ -14,123 +11,154 @@ Prove reachability or exploitability before reporting security.
 Do not accept requested severity without evidence.
 ```
 
-## Why This Name
-
-`debug` is too narrow. This skill does more than debug: it watches trust boundaries, follows data flow, checks exploitability, resists false positives and forces reproducible evidence.
-
-`OP3 Code Sentinel` means:
-
-- code-aware;
-- defensive;
-- evidence-first;
-- useful for debug and security review.
-
-Technical skill id:
-
-```text
-op3-code-sentinel
-```
-
-Suggested public repository name:
-
-```text
-op3-code-sentinel-skill
-```
-
-Suggested repository description:
-
-```text
-Portable AI-agent skill for code review, debugging, and security audits. Includes Hermes and Codex install examples.
-```
-
 ## What It Helps With
 
-- Debugging crashes, regressions, flaky tests, hangs and incidents.
+- Debugging crashes, regressions, flaky tests, hangs, and incidents.
 - Reviewing code for real bugs and security vulnerabilities.
 - Avoiding false positives in security reports.
 - Forcing source -> validation -> sink reasoning.
-- Producing actionable findings with proof, impact, fix and verification.
-- Handling Python, Rust, Go and Shell with language-specific references.
+- Producing actionable findings with proof, impact, fix, and verification.
+- Handling Python, Rust, Go, Shell, infrastructure scripts, auth/authz,
+  secrets, injections, races, unsafe code, and dependency vulnerabilities.
+
+## Runtime Packages
+
+This repository ships four installable variants so each agent gets native
+instructions and install paths.
+
+```text
+skills/op3-code-sentinel/              Hermes Skills Hub package
+codex/op3-code-sentinel/               Codex package
+.opencode/skills/op3-code-sentinel/    OpenCode package
+portable/op3-code-sentinel/            Runtime-neutral package
+```
+
+The methodology references are copied into each package so every variant can
+be installed on its own.
+
+## Install In Hermes
+
+Hermes must be installed through the Skills Hub command so the skill appears in
+Hermes skill lists, can be audited, and can be updated later. Do not install the
+Hermes variant by manually copying files into `~/.hermes/skills`.
+
+Preview:
+
+```bash
+hermes skills inspect op3-221/op3-code-sentinel-skill/skills/op3-code-sentinel
+```
+
+Install:
+
+```bash
+hermes skills install op3-221/op3-code-sentinel-skill/skills/op3-code-sentinel
+```
+
+Verify:
+
+```bash
+hermes skills list --source hub
+```
+
+If direct GitHub install is unavailable in your Hermes version, add the repo as
+a tap and install the identifier returned by search:
+
+```bash
+hermes skills tap add op3-221/op3-code-sentinel-skill
+hermes skills search op3 --source github
+hermes skills install <identifier-from-search>
+```
+
+Inside a Hermes chat session, the same flow is available through slash
+commands:
+
+```text
+/skills inspect op3-221/op3-code-sentinel-skill/skills/op3-code-sentinel
+/skills install op3-221/op3-code-sentinel-skill/skills/op3-code-sentinel
+/skills list
+```
+
+## Install In Codex
+
+The Codex package is kept outside `.agents/skills/` in this repository to avoid
+OpenCode loading the Codex variant through its compatibility scanner. Install it
+into Codex's normal user skill directory.
+
+For a personal user-wide install:
+
+```bash
+mkdir -p ~/.agents/skills
+rsync -a codex/op3-code-sentinel/ ~/.agents/skills/op3-code-sentinel/
+```
+
+For repo-scoped Codex use in another project, copy the same directory to that
+project's `.agents/skills/op3-code-sentinel/`. Start a new Codex thread if the
+skill does not appear immediately. The Codex package includes
+`agents/openai.yaml` for Codex UI metadata.
+
+Example prompt:
+
+```text
+Use $op3-code-sentinel to review this code for real bugs and security risks.
+Prove reachability before reporting findings.
+```
+
+## Install In OpenCode
+
+OpenCode can use the project-scoped skill directly when this repository is
+open, because the OpenCode package lives under `.opencode/skills/`.
+
+For a global OpenCode install:
+
+```bash
+mkdir -p ~/.config/opencode/skills
+rsync -a .opencode/skills/op3-code-sentinel/ ~/.config/opencode/skills/op3-code-sentinel/
+```
+
+Use OpenCode's normal skill invocation and ask for `op3-code-sentinel` when
+debugging or reviewing code.
+
+## Install In Other Agents
+
+Use the runtime-neutral package when your agent supports the open
+`SKILL.md`-style layout but has different tool names:
+
+```bash
+portable/op3-code-sentinel/
+```
+
+Adapt mentions of file search, file reading, shell execution, and patching to
+the target runtime.
 
 ## Repository Layout
 
 ```text
 skills/op3-code-sentinel/
   SKILL.md
+  references/
+
+codex/op3-code-sentinel/
+  SKILL.md
   agents/openai.yaml
   references/
-    security-method.md
-    python.md
-    rust.md
-    go.md
-    shell.md
-    report-format.md
-    pressure-scenarios.md
+
+.opencode/skills/op3-code-sentinel/
+  SKILL.md
+  references/
+
+portable/op3-code-sentinel/
+  SKILL.md
+  references/
 
 docs/
-  research.md
-  pressure-scenarios.md
-  validation-results.md
-
 examples/
-  bugsy-soul/SOUL.md
-
+skills.sh.json
 DISCLAIMER.md
 SECURITY.md
 SUPPORT.md
 LICENSE
 PUBLISHING.md
 ```
-
-## Compatibility
-
-This package is intentionally not locked to one agent platform.
-
-- Hermes: copy the skill into `~/.hermes/skills/`.
-- Codex: copy the skill into `~/.codex/skills/`.
-- Other AI-agent runtimes: adapt `skills/op3-code-sentinel/SKILL.md` and the reference files to the runtime's skill/profile format.
-
-The example soul in `examples/bugsy-soul/SOUL.md` is Hermes-oriented, but the core review methodology is platform-neutral.
-
-## Install In Hermes
-
-Copy the skill folder into the Hermes skill directory:
-
-```bash
-mkdir -p ~/.hermes/skills
-rsync -a skills/op3-code-sentinel/ ~/.hermes/skills/op3-code-sentinel/
-```
-
-Restart the Hermes session or gateway that should load the skill.
-
-## Install In Codex
-
-Copy the skill folder into the Codex skill directory:
-
-```bash
-mkdir -p ~/.codex/skills
-rsync -a skills/op3-code-sentinel/ ~/.codex/skills/op3-code-sentinel/
-```
-
-Start a new Codex session so the skill metadata is discovered.
-
-## Example Prompt
-
-```text
-Use the op3-code-sentinel skill.
-Review this code for real bugs and security risks.
-Prove reachability before reporting findings.
-```
-
-## Example Agent Soul
-
-See:
-
-```text
-examples/bugsy-soul/SOUL.md
-```
-
-This is an example only. Adapt the name, orchestration and operational boundaries to your own environment.
 
 ## Validation
 
@@ -141,14 +169,19 @@ The skill was tested with pressure scenarios:
 - Destructive Shell snippet.
 - Rust unsafe FFI severity trap.
 
-One Rust scenario initially failed because the agent accepted "mark all unsafe critical" too readily. The skill was then hardened and retested successfully.
+One Rust scenario initially failed because the agent accepted "mark all unsafe
+critical" too readily. The skill was then hardened and retested successfully.
 
 ## Safety
 
-Read `DISCLAIMER.md` and `SECURITY.md` before using this in production or security-sensitive work.
+Read `DISCLAIMER.md` and `SECURITY.md` before using this in production or
+security-sensitive work.
 
-This project helps agents reason better. It does not replace human review, professional security testing, legal advice, compliance work, or production incident response.
+This project helps agents reason better. It does not replace human review,
+professional security testing, legal advice, compliance work, or production
+incident response.
 
 ## Support
 
-This project is shared as a community resource with no support obligation. See `SUPPORT.md`.
+This project is shared as a community resource with no support obligation. See
+`SUPPORT.md`.

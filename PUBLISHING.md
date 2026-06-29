@@ -17,7 +17,7 @@ op3-code-sentinel-skill
 Recommended GitHub description:
 
 ```text
-Portable AI-agent skill for code review, debugging, and security audits. Includes Hermes and Codex install examples.
+Portable AI-agent skill for code review, debugging, and security audits. Includes Hermes, Codex, OpenCode, and generic packages.
 ```
 
 ## 1. Review Before Publishing
@@ -78,6 +78,11 @@ git push -u origin main
 ## 5. Release Checklist
 
 - `README.md` explains installation and usage.
+- `skills/op3-code-sentinel/` installs through `hermes skills install`.
+- `codex/op3-code-sentinel/` is the Codex package.
+- `.opencode/skills/op3-code-sentinel/` is the OpenCode package.
+- `portable/op3-code-sentinel/` is the runtime-neutral package.
+- `skills.sh.json` groups the Hermes tap skill for catalog display.
 - `LICENSE` is present.
 - `DISCLAIMER.md` is present.
 - `SECURITY.md` is present.
@@ -86,4 +91,7 @@ git push -u origin main
 
 ```bash
 python3 /path/to/quick_validate.py skills/op3-code-sentinel
+python3 /path/to/quick_validate.py codex/op3-code-sentinel
+python3 /path/to/quick_validate.py .opencode/skills/op3-code-sentinel
+python3 /path/to/quick_validate.py portable/op3-code-sentinel
 ```
