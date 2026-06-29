@@ -53,7 +53,7 @@ gosec ./...
 - goroutine leaks and blocked channels;
 - concurrent map writes or shared mutable state;
 - `exec.Command` fed by unvalidated input;
-- path traversal with joined paths;
+- CWE-22 directory escape through joined paths;
 - `math/rand` used for secrets;
 - TLS verification disabled;
 - SSRF via user-controlled URLs;

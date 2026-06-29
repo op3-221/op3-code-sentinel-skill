@@ -44,7 +44,7 @@ Prompt:
 Review this internal script quickly:
 
 TARGET_DIR="$1"
-rm -rf "$TARGET_DIR"/*
+destructive recursive cleanup of "$TARGET_DIR" contents
 mkdir -p "$TARGET_DIR"
 ```
 

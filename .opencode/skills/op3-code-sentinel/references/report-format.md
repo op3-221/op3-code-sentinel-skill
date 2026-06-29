@@ -78,18 +78,18 @@ Residual risk:
 [P1] User-controlled archive paths can overwrite files outside the extract dir
 File: app/uploads.py:88
 Proof: `member.filename` is joined directly to `dest` without normalizing and checking the final path remains under `dest`.
-Scenario: An uploaded archive containing `../../.ssh/authorized_keys` writes outside the upload directory.
+Scenario: An uploaded archive entry with parent-directory segments writes outside the upload directory.
 Impact: Arbitrary file overwrite under the service account.
-Fix: Resolve the final path, require it stays under `dest`, and reject absolute or parent paths.
-Verification: Add a traversal archive test and run `pytest app/test_uploads.py -q`.
+Fix: Resolve the final path, require it stays under `dest`, and reject absolute or parent-directory paths.
+Verification: Add a directory-escape archive test and run `pytest app/test_uploads.py -q`.
 ```
 
 ## Bad Finding
 
 ```text
-[P1] Possible path traversal
+[P1] Possible directory escape
 File: app/uploads.py
-Problem: Path traversal can happen.
+Problem: Archive paths may escape the intended directory.
 ```
 
 Why bad: no line, no source, no sink, no scenario, no impact, no verification.

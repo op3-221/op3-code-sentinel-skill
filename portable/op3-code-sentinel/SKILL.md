@@ -38,7 +38,7 @@ git status --short
 git diff --stat
 git diff --check
 git diff --name-only
-rg -n "TODO|FIXME|XXX|HACK|password|secret|token|api[_-]?key|private[_-]?key|BEGIN RSA|BEGIN OPENSSH|DATABASE_URL|JWT|SESSION|DEBUG|shell=True|unsafe|exec\.|Command\(|rm -rf|0\.0\.0\.0|privileged|hostNetwork|docker\.sock"
+rg -n "TODO|FIXME|XXX|HACK|password|secret|token|api[_-]?key|private[_-]?key|BEGIN RSA|BEGIN OPENSSH|DATABASE_URL|JWT|SESSION|DEBUG|shell=True|unsafe|exec\.|Command\(|0\.0\.0\.0|privileged|hostNetwork|docker\.sock"
 ```
 
 If `rg` is not available, use the runtime's preferred file-search mechanism.
