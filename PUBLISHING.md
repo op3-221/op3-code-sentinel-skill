@@ -78,6 +78,8 @@ git push -u origin main
 ## 5. Release Checklist
 
 - `README.md` explains installation and usage.
+- `HERMES.md` explains that the Hermes package intentionally lives under
+  `skills/op3-code-sentinel/`.
 - `skills/op3-code-sentinel/` installs through `hermes skills install`.
 - `codex/op3-code-sentinel/` is the Codex package.
 - `.opencode/skills/op3-code-sentinel/` is the OpenCode package.
